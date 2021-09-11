@@ -209,9 +209,9 @@ def stop():
     return CliAction(Stop(), terminal=True, wait=StatusWait('clean_status', 'stop'))
 
 
-@cli.resultcallback()
+@cli.result_callback()
 def run(actions, debug):
-    actions = list(filter(None.__ne__, actions))
+    actions = list(filter(lambda x: x is not None, actions))
     if actions and charge and not actions[-1].terminal:
         actions.append(charge_action())
 
