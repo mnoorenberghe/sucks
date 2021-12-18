@@ -170,7 +170,7 @@ class EcoVacsAPI:
         }
         
         self.verify_ssl = str_to_bool_or_cert(verify_ssl)
-        _LOGGER.debug("Setting up EcoVacsAPI")
+        _LOGGER.debug("Setting up EcoVacsAPI with ssl: {} {}".format(verify_ssl, self.verify_ssl))
         self.resource = device_id[0:8]
         self.country = country
         self.continent = continent
