@@ -759,7 +759,7 @@ class EcoVacsIOTMQ(ClientMQTT):
         }     
 
     def __call_iotdevmanager_api(self, args, verify_ssl=True):
-        _LOGGER.debug("calling iotdevmanager api with {}".format(args))                
+        _LOGGER.debug("calling iotdevmanager api with {} and ssl: {}".format(args, verify_ssl))
         params = {}
         params.update(args)
 
