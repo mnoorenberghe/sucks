@@ -11,9 +11,9 @@ import ssl
 import requests
 import stringcase
 import os
-from sleekxmppfs import ClientXMPP, Callback, MatchXPath
-from sleekxmppfs.xmlstream import ET
-from sleekxmppfs.exceptions import XMPPError
+from sleekxmpp import ClientXMPP, Callback, MatchXPath
+from sleekxmpp.xmlstream import ET
+from sleekxmpp.exceptions import XMPPError
 
 from paho.mqtt.client import Client  as ClientMQTT
 from paho.mqtt import publish as MQTTPublish
@@ -884,6 +884,7 @@ class EcoVacsXMPP(ClientXMPP):
         else:
             self.server_address = server_address
         self.add_event_handler("session_start", self.session_start)
+        self.add_event_handler("ssl_invalid_cert", self.invalid_cert)
         self.ctl_subscribers = []
         self.ready_flag = Event()
 
@@ -898,6 +899,11 @@ class EcoVacsXMPP(ClientXMPP):
                                        MatchXPath('{jabber:client}iq/{com:ctl}query/{com:ctl}'),
                                        self._handle_ctl))
         self.ready_flag.set()
+
+    def invalid_cert(self, pem_cert):
+        # Avoid validating the certs due to Ecovacs' servers having invalid certs.
+        # TODO: Pin the invalid cert instead.
+        pass
 
     def subscribe_to_ctls(self, function):
         self.ctl_subscribers.append(function)

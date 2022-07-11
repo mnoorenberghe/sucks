@@ -2,7 +2,7 @@ from nose.tools import *
 
 from sucks import *
 from unittest.mock import Mock, patch
-from sleekxmppfs.exceptions import XMPPError
+from sleekxmpp.exceptions import XMPPError
 from paho.mqtt.client import MQTT_ERR_UNKNOWN as MQTTError
 
 

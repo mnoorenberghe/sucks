@@ -1,7 +1,7 @@
 from codecs import open
 from os import path
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 here = path.abspath(path.dirname(__file__))
 
@@ -63,7 +63,7 @@ setup(
     # https://packaging.python.org/en/latest/requirements.html
 
     install_requires=[
-        'sleekxmppfs>=1.3.4',
+        'sleekxmpp @ git+https://github.com/darkbarker/SleekXMPP.git@fb09d10e81f5465fdf47d704c949852c6a607d70#egg=sleekxmpp',
         'click>=6',
         'requests>=2.18',
         'pycryptodome>=3.4',
